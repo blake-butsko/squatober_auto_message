@@ -3,7 +3,7 @@ name: Squatober Message
 on:
   schedule:
   # have it run at 8am
-   - cron: "0 8 * * *"
+   - cron: "*/10 * * * *"
 
 jobs:
   build:
