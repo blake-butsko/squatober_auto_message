@@ -1,0 +1,35 @@
+name: Squatober Message
+
+on:
+  schedule:
+  # have it run at 8am
+   - cron: "0 8 * * *"
+
+jobs:
+  build:
+    # Our instance will use the latest available version of Ubuntu.
+    runs-on: ubuntu-latest
+
+    # These steps are run in the same order as are defined.
+    steps:
+      # actions checkout and python are pre-built actions
+      # that abstract commonly used tasks.
+      - uses: actions/checkout@v2
+
+      # The python action will set us a Python 3.8 (64-bit) instance.
+      - name: Setting up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+          architecture: "x64"
+
+      # Use PIP to install the dependencies and then run the script.
+      - name: Running Script
+        # But first we read the WEBHOOK secret and create an
+        # environment variable with the same name.
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}  # Load secrets securely
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          PHONE_NUMBERS: ${{ secrets.PHONE_NUMBERS }}
+        run:
+          python main.py
