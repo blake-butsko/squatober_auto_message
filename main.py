@@ -7,10 +7,10 @@ def email_alert(body, to):
     msg = EmailMessage()
     msg.set_content(body)  # Only set the body, no subject
 
-    user = "stanleygarbagea@gmail.com"
+    user = os.getenv("EMAIL_USER")
     msg['from'] = "Squatober Alert"
     msg['to'] = to    
-    password = "vizwosvmrdjtgrye"  # Your app password
+    password = os.getenv("EMAIL_PASSWORD")  # Your app password
 
     # Set up the SMTP server
     server = smtplib.SMTP("smtp.gmail.com", 587)
