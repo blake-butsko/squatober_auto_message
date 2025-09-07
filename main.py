@@ -40,6 +40,10 @@ if __name__ == '__main__':
         daily_message = f"Second to last day!! gotta do {squat_num} squats"
     elif(day == 29):
         daily_message = f"Third to last day!! gotta do {squat_num} squats"
+    elif(day == 16):
+        daily_message = f"Over half way there!! you can do it, {squat_num} squats"
+    elif(day == 8):
+        daily_message = f"One week down!! gotta do {squat_num} squats"
     elif(day_of_week == 0):
         daily_message = f"{squat_num} monday squats, do it for Garfield! :3"
     elif(day_of_week == 1):
@@ -54,7 +58,6 @@ if __name__ == '__main__':
         daily_message = f"It may be the Sabbath! But you got {squat_num} squats to do."
     else:
         daily_message = f"You gotta do {squat_num} squats today, good luck!"
-#     # email_alert("Hey", "I'm sending this via a program", "4199022677@vtext.com") #Verizon
     phone_numbers = os.getenv("PHONE_NUMBERS", "").split(",")
     for phone in phone_numbers:
         email_alert(daily_message, phone)
