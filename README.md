@@ -6,3 +6,5 @@ This is a automated message that tells you the number of squats to do each day
 
 This is my first time hosting a script (I used github actions) it's really cool  
 If you also wanna recieve texts then send me a dm with your number and service provider, or if you don't feel comfortable with that I wrote some extra code to use your email  
+
+Phone numbers/emails stored in github secrets
