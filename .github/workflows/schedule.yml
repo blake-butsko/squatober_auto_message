@@ -41,8 +41,9 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           PHONE_NUMBERS: ${{ secrets.PHONE_NUMBERS }}
         run: |
-          # If a test_number input is provided, pass it into main.py
+          # If a test_number input is provided, override PHONE_NUMBERS
           if [ -n "${{ github.event.inputs.test_number }}" ]; then
-            PHONE_NUMBERS="${{ github.event.inputs.test_number }}" python main.py
-          else
-            python main.py
+            export PHONE_NUMBERS="${{ github.event.inputs.test_number }}"
+          fi
+
+          python main.py
