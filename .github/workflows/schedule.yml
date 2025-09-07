@@ -1,9 +1,9 @@
 name: Squatober Message
 
-# Runs at 8am in October
+# Runs at 7am in October
 # on:
 #   schedule:
-#    - cron: "0 8 * 10 *"
+#    - cron: "0 7 26 9 *"
 
 jobs:
   build:
