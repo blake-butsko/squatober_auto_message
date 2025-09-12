@@ -1,23 +1,21 @@
 import os
-import smtplib
-from email.message import EmailMessage
+from signalwire.rest import Client as SignalWireClient
 from datetime import date
 
-def email_alert(body, to):
-    msg = EmailMessage()
-    msg.set_content(body)  # Only set the body, no subject
+def sms_alert(body, to):
+    # SignalWire credentials
+    project_id = os.getenv("SIGNALWIRE_PROJECT_ID")
+    api_token = os.getenv("SIGNALWIRE_API_TOKEN")
+    space_url = os.getenv("SIGNALWIRE_SPACE_URL")  # e.g., "your-space.signalwire.com"
+    from_number = os.getenv("SIGNALWIRE_PHONE_NUMBER")  # Your purchased SignalWire number
 
-    user = os.getenv("EMAIL_USER")
-    msg['from'] = "Squatober Alert"
-    msg['to'] = to    
-    password = os.getenv("EMAIL_PASSWORD")  # Your app password
-
-    # Set up the SMTP server
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls()
-    server.login(user, password)
-    server.send_message(msg)
-    server.quit()
+    client = SignalWireClient(project_id, api_token, signalwire_space_url=space_url)
+    message = client.messages.create(
+        body=body,
+        from_=from_number,
+        to=to
+    )
+    print(f"Sent message: {message.sid} to {to}")
 
 def Tn(n):
     sum = 0
@@ -27,11 +25,8 @@ def Tn(n):
 
 day = date.today().day
 day_of_week = date.today().weekday()
-# print(day_of_week)
-# get mon, tue, wed, etc from it
 
 squat_num = Tn(day)
-# print(test)
 
 if __name__ == '__main__':
     if(day == 31):
@@ -58,6 +53,8 @@ if __name__ == '__main__':
         daily_message = f"It may be the Sabbath! But you got {squat_num} squats to do."
     else:
         daily_message = f"You gotta do {squat_num} squats today, good luck!"
+
     phone_numbers = os.getenv("PHONE_NUMBERS", "").split(",")
     for phone in phone_numbers:
-        email_alert(daily_message, phone)
+        if phone.strip():
+            sms_alert(daily_message, phone.strip())
