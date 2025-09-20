@@ -39,13 +39,10 @@ jobs:
         # But first we read the WEBHOOK secret and create an
         # environment variable with the same name.
         env:
-          EMAIL_USER: ${{ secrets.EMAIL_USER }}  # Load secrets securely
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          SIGNALWIRE_PROJECT_ID: ${{ secrets.SIGNALWIRE_PROJECT_ID }}
+          SIGNALWIRE_API_TOKEN: ${{ secrets.SIGNALWIRE_API_TOKEN }}
+          SIGNALWIRE_SPACE_URL: ${{ secrets.SIGNALWIRE_SPACE_URL }}
+          SIGNALWIRE_PHONE_NUMBER: ${{ secrets.SIGNALWIRE_PHONE_NUMBER }}
           PHONE_NUMBERS: ${{ secrets.PHONE_NUMBERS }}
-        run: |
-          # If a test_number input is provided, override PHONE_NUMBERS
-          if [ -n "${{ github.event.inputs.test_number }}" ]; then
-            export PHONE_NUMBERS="${{ github.event.inputs.test_number }}"
-          fi
-
+        run: 
           python main.py
