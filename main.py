@@ -1,21 +1,28 @@
 import os
-from signalwire.rest import Client as SignalWireClient
+import vonage
 from datetime import date
 
 def sms_alert(body, to):
     # SignalWire credentials
-    project_id = os.getenv("SIGNALWIRE_PROJECT_ID")
-    api_token = os.getenv("SIGNALWIRE_API_TOKEN")
-    space_url = os.getenv("SIGNALWIRE_SPACE_URL")  # e.g., "your-space.signalwire.com"
-    from_number = os.getenv("SIGNALWIRE_PHONE_NUMBER")  # Your purchased SignalWire number
+    project_id = os.getenv("VONAGE_API")
+    api_token = os.getenv("VONAGE_KEY")
+    from_number = os.getenv("VONAGE_NUMBER")  # Your purchased SignalWire number
 
-    client = SignalWireClient(project_id, api_token, signalwire_space_url=space_url)
-    message = client.messages.create(
-        body=body,
-        from_=from_number,
-        to=to
+    client = vonage.Client(key=project_id, secret=api_token)
+    sms = vonage.Sms(client)
+    
+    responseData = sms.send_message(
+        {
+            "from": from_number,
+            "to": to,
+            "text": "A text message sent using the Nexmo SMS API",
+        }
     )
-    print(f"Sent message: {message.sid} to {to}")
+    
+    if responseData["messages"][0]["status"] == "0":
+        print("Message sent successfully.")
+    else:
+        print(f"Message failed with error: {responseData['messages'][0]['error-text']}")
 
 def Tn(n):
     sum = 0
