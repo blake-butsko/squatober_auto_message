@@ -4,11 +4,11 @@ from datetime import date
 
 def sms_alert(body, to):
     # SignalWire credentials
-    project_id = os.getenv("VONAGE_API")
-    api_token = os.getenv("VONAGE_KEY")
+    vonage_api_key = os.getenv("VONAGE_API_KEY")
+    vonage_api_secret = os.getenv("VONAGE_API_SECRET")
     from_number = os.getenv("VONAGE_NUMBER")  # Your purchased SignalWire number
 
-    client = vonage.Client(key=project_id, secret=api_token)
+    client = vonage.Client(key=vonage_api_key, secret=vonage_api_secret)
     sms = vonage.Sms(client)
     
     responseData = sms.send_message(
