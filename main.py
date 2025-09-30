@@ -3,7 +3,7 @@ import requests
 from datetime import date
 
 def sms_alert(body, to):
-    # SignalWire credentials
+    # Using Textbelt
     text_belt_api_key = os.getenv("TEXT_BELT_API_KEY")
     print(type(text_belt_api_key))
     resp = requests.post('https://textbelt.com/text', {
@@ -11,13 +11,6 @@ def sms_alert(body, to):
       'message': body,
       'key': text_belt_api_key,
     })
-    print(resp.json())
-    resp = requests.post('https://textbelt.com/text', {
-      'phone': to,
-      'message': body,
-      'key': 'textbelt',
-    })
-    print(resp.json())
 
 def Tn(n):
     sum = 0
