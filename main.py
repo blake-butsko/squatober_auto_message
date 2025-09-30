@@ -5,6 +5,7 @@ from datetime import date
 def sms_alert(body, to):
     # SignalWire credentials
     text_belt_api_key = os.getenv("TEXT_BELT_API_KEY")
+    print(type(text_belt_api_key))
     import requests
     resp = requests.post('https://textbelt.com/text', {
       'phone': to,
