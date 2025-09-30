@@ -27,13 +27,15 @@ if __name__ == '__main__':
     if(day == 31):
         daily_message = f"Last day!!! gotta do {squat_num} squats, happy halloween!"
     elif(day == 30):
-        daily_message = f"Second to last day!! gotta do {squat_num} squats"
+        daily_message = f"Second to last day!! gotta do {squat_num} squats🎃🎃🏋️‍♂️"
     elif(day == 29):
         daily_message = f"Third to last day!! gotta do {squat_num} squats"
     elif(day == 16):
         daily_message = f"Over half way there!! you can do it, {squat_num} squats"
     elif(day == 8):
         daily_message = f"One week down!! gotta do {squat_num} squats"
+    elif(day == 1):
+        daily_message = f"Happy Squatober! each day for the month of October you will get an increasing number of bodyweight-squats to do, we're starting with {squat_num} squat for the first day of the quad busting journey"
     elif(day_of_week == 0):
         daily_message = f"{squat_num} monday squats, do it for Garfield! :3"
     elif(day_of_week == 1):
