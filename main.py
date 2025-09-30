@@ -27,7 +27,7 @@ if __name__ == '__main__':
     if(day == 31):
         daily_message = f"Last day!!! gotta do {squat_num} squats, happy halloween!"
     elif(day == 30):
-        daily_message = f"Second to last day!! gotta do {squat_num} squats🎃🎃🏋️‍♂️"
+        daily_message = f"Second to last day!! gotta do {squat_num} squats🎃🎃🏋️"
     elif(day == 29):
         daily_message = f"Third to last day!! gotta do {squat_num} squats"
     elif(day == 16):
