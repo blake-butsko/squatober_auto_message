@@ -39,10 +39,7 @@ jobs:
         # But first we read the WEBHOOK secret and create an
         # environment variable with the same name.
         env:
-          SIGNALWIRE_PROJECT_ID: ${{ secrets.SIGNALWIRE_PROJECT_ID }}
-          SIGNALWIRE_API_TOKEN: ${{ secrets.SIGNALWIRE_API_TOKEN }}
-          SIGNALWIRE_SPACE_URL: ${{ secrets.SIGNALWIRE_SPACE_URL }}
-          SIGNALWIRE_PHONE_NUMBER: ${{ secrets.SIGNALWIRE_PHONE_NUMBER }}
+          TEXT_BELT_API_KEY: ${{ secrets.TEXT_BELT_API_KEY }}
           PHONE_NUMBERS: ${{ secrets.PHONE_NUMBERS }}
         run: 
           python main.py
