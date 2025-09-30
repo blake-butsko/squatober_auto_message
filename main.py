@@ -1,28 +1,17 @@
 import os
-import vonage
+import requests
 from datetime import date
 
 def sms_alert(body, to):
     # SignalWire credentials
-    vonage_api_key = os.getenv("VONAGE_API_KEY")
-    vonage_api_secret = os.getenv("VONAGE_API_SECRET")
-    from_number = os.getenv("VONAGE_NUMBER")  # Your purchased SignalWire number
-
-    client = vonage.Client(key=vonage_api_key, secret=vonage_api_secret)
-    sms = vonage.Sms(client)
-    
-    responseData = sms.send_message(
-        {
-            "from": from_number,
-            "to": to,
-            "text": "A text message sent using the Nexmo SMS API",
-        }
-    )
-    
-    if responseData["messages"][0]["status"] == "0":
-        print("Message sent successfully.")
-    else:
-        print(f"Message failed with error: {responseData['messages'][0]['error-text']}")
+    text_belt_api_key = os.getenv("TEXT_BELT_API_KEY")
+    import requests
+    resp = requests.post('https://textbelt.com/text', {
+      'phone': to,
+      'message': body,
+      'key': text_belt_api_key,
+    })
+    print(resp.json())
 
 def Tn(n):
     sum = 0
