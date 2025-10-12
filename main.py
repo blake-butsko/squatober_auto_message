@@ -10,6 +10,7 @@ def sms_alert(body, to):
       'message': body,
       'key': text_belt_api_key,
     })
+    print(resp.json()) # to check why not everyone is getting the messages
 
 def Tn(n):
     sum = 0
